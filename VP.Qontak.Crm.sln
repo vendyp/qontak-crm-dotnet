@@ -5,7 +5,7 @@ VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AE94EEC1-2A6F-4225-BFE9-2B4A8FF0DC1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VP.Qontak.Crm", "src\VP.Qontak.Crm\VP.Qontak.Crm.csproj", "{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Qontak.Crm", "src\Qontak.Crm\Qontak.Crm.csproj", "{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,20 +20,20 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|x64.Build.0 = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Debug|x86.Build.0 = Debug|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|x64.ActiveCfg = Release|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|x64.Build.0 = Release|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|x86.ActiveCfg = Release|Any CPU
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028}.Release|x86.Build.0 = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|x64.Build.0 = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Debug|x86.Build.0 = Debug|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|x64.ActiveCfg = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|x64.Build.0 = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|x86.ActiveCfg = Release|Any CPU
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2CAAB55F-D5AD-43CF-841A-5E60BDAEB028} = {AE94EEC1-2A6F-4225-BFE9-2B4A8FF0DC1D}
+		{4532B44A-5CE2-4324-9FB4-9B9E06F99CD4} = {AE94EEC1-2A6F-4225-BFE9-2B4A8FF0DC1D}
 	EndGlobalSection
 EndGlobal

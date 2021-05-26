@@ -2,7 +2,8 @@
 
 namespace Qontak.Crm
 {
-    public class Class1
+    public class QontakCrmClient
     {
+        
     }
 }

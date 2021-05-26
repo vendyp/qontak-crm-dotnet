@@ -2,6 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Dwi Vendy Pratama</Authors>
+    <Product>Qontak.Crm</Product>
+    <Description>A Simple Library for integration with Qontak Crm API.</Description>
+    <Copyright>2021</Copyright>
+    <Version>0.0.0.1</Version>
+    <PackageProjectUrl>https://github.com/VendyP/Qontak.Crm</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/VendyP/Qontak.Crm</RepositoryUrl>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
 
 </Project>

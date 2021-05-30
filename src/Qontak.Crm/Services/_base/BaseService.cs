@@ -1,8 +1,14 @@
-namespace Qontak.Crm.Services._base
+namespace Qontak.Crm
 {
     public abstract class BaseService
     {
-        public abstract bool NeedAuthentication { get; }
+        public string BaseVersion => "v3.1";
+
         public abstract string BasePath { get; }
+
+        protected string ContructEndpoint()
+        {
+            return $"api/{BaseVersion}/{BasePath}";
+        }
     }
 }

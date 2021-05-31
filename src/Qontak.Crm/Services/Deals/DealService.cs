@@ -1,4 +1,8 @@
 using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Qontak.Crm
 {
@@ -17,5 +21,19 @@ namespace Qontak.Crm
         }
 
         public override string BasePath => "deals";
+
+        public override List<Info> Infoes { get; set; }
+
+        public async Task<List<Info>> GetInfoAsync(CancellationToken cancellationToken = default)
+        {
+            if (Infoes == null)
+                Infoes = await _crmClient.RequestListAsync<Info>(
+                    HttpMethod.Get,
+                    $"{BasePath}/info",
+                    null,
+                    cancellationToken);
+
+            return Infoes;
+        }
     }
 }

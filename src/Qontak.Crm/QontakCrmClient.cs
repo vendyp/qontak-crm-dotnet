@@ -12,6 +12,7 @@ namespace Qontak.Crm
 {
     public class QontakCrmClient : IQontakCrmClient
     {
+        private const string ApiVersion = "v3.1";
         private readonly QontakCrmOptions _options;
         private readonly ITokenCacheManagement _cacheManagement;
         private readonly IHttpClient _httpClient;
@@ -41,15 +42,22 @@ namespace Qontak.Crm
             return new DefaultCacheManagement();
         }
 
-        public async Task<BaseResponse<T>> RequestAsync<T>(
+        public async Task<QontakResponse> BaseRequestAsync(
             HttpMethod method,
             string path,
-            CancellationToken cancellationToken = default) where T : IQontakCrmEntity
+            HttpContent content = null,
+            CancellationToken cancellationToken = default)
         {
             var token = _cacheManagement.Get();
             if (token == null || IsTokenExpired(token)) token = await BuildTokenAsync(cancellationToken);
 
-            var request = new QontakRequest();
+            Dictionary<string, string> headers = BuildHeader(token);
+
+            var request = new QontakRequest(
+                new Uri(Path.Combine(CrmConstant.BaseUrl, ConstructPath(path))),
+                method,
+                content,
+                headers);
 
             bool retryOneTime = true;
 
@@ -76,9 +84,23 @@ namespace Qontak.Crm
                     if (response.HttpStatusCode != HttpStatusCode.OK)
                         throw new QontakCrmException(message: "Server is busy, please try again later");
 
-                    return ProcessResponse<T>(response);
+                    return response;
                 }
             }
+        }
+
+        private string ConstructPath(string path)
+        {
+            return $"api/{ApiVersion}/{path}";
+        }
+
+        private Dictionary<string, string> BuildHeader(RequestToken token)
+        {
+            var dict = new Dictionary<string, string>();
+
+            dict.Add("Authorization", $"bearer {token.AccessToken}");
+
+            return dict;
         }
 
         private bool IsTokenExpired(RequestToken token)
@@ -137,7 +159,7 @@ namespace Qontak.Crm
             return requestToken;
         }
 
-        private BaseResponse<T> ProcessResponse<T>(QontakResponse response) where T : IQontakCrmEntity
+        private BaseResponse<T> ProcessResponse<T>(QontakResponse response)
         {
             if (response.HttpStatusCode != HttpStatusCode.OK)
             {
@@ -152,6 +174,30 @@ namespace Qontak.Crm
             {
                 throw new QontakCrmException($"Invalid object response from Qontak");
             }
+        }
+
+        public async Task<T> RequestAsync<T>(HttpMethod method, string path, HttpContent content, CancellationToken cancellationToken) where T : IQontakCrmEntity
+        {
+            return ProcessResponse<T>(await BaseRequestAsync(method, path, content, cancellationToken)).Data;
+        }
+
+        public async Task<List<T>> RequestListAsync<T>(HttpMethod method, string path, HttpContent content = null, CancellationToken cancellationToken = default) where T : IQontakCrmEntity
+        {
+            return ProcessResponse<List<T>>(await BaseRequestAsync(method, path, content, cancellationToken)).Data;
+        }
+
+        public async Task<PaginationResponse<T>> RequestPaginationListAsync<T>(HttpMethod method, string path, HttpContent content = null, CancellationToken cancellationToken = default) where T : IQontakCrmEntity
+        {
+            var result = ProcessResponse<List<T>>(await BaseRequestAsync(method, path, content, cancellationToken));
+
+            return new PaginationResponse<T>
+            {
+                Data = result.Data,
+                CurrentData = result.CurrentData.Value,
+                Page = result.Page.Value,
+                TotalData = result.TotalData.Value,
+                TotalPage = result.TotalPage.Value
+            };
         }
     }
 }

@@ -19,6 +19,7 @@ namespace Qontak.Crm.Infrastructure
             Headers = headers;
         }
 
+        [Obsolete("Ignored")]
         public string BaseUrl => CrmConstant.BaseUrl;
 
         public Uri Uri { get; set; }

@@ -12,10 +12,12 @@ namespace Qontak.Crm.Tests.Constructions
 
         public QontakRequest QontakRequest { get; }
 
-        [Fact]
+        [Fact(Skip = "QontakRequest BaseUrl no longer use")]
         public void QontakRequest_Init_ShouldMatch()
         {
+#pragma warning disable 0618
             Assert.Equal(expected: CrmConstant.BaseUrl, actual: QontakRequest.BaseUrl);
+#pragma warning restore 0618
         }
 
         [Fact]

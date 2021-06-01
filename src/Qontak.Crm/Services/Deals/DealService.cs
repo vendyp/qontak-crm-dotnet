@@ -24,6 +24,13 @@ namespace Qontak.Crm
 
         public override List<Info> Infoes { get; set; }
 
+        public async Task<Deal> CreateDealAsync(CreateDealOptions createDealOptions, Dictionary<string, string> additionalFields, CancellationToken cancellationToken = default)
+        {
+            if (Infoes == null) await GetInfoAsync(cancellationToken);
+
+            throw new NotImplementedException();
+        }
+
         public async Task<List<Info>> GetInfoAsync(CancellationToken cancellationToken = default)
         {
             if (Infoes == null)

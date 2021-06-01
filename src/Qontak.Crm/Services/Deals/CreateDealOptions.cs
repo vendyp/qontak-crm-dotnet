@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Qontak.Crm.Services.Deals
+namespace Qontak.Crm
 {
     public class CreateDealOptions
     {

@@ -43,6 +43,14 @@ namespace Qontak.Crm.Tests.Functional
         }
 
         [Fact]
+        public void DealService_Infoes_MustNull_When_FirstTimeCreation()
+        {
+            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
+
+            Assert.Null(ctr.Infoes);
+        }
+
+        [Fact]
         public async Task DealService_GetInfoAsync_ShouldCall_RequestListAsync()
         {
             var moq = MockCrmClient.GetMockedObjectOfCrmClient<Info>();
@@ -59,5 +67,28 @@ namespace Qontak.Crm.Tests.Functional
               CancellationToken.None),
               Times.Once);
         }
+
+        [Fact]
+        public async Task DealService_Infoes_MustNotNull_After_GetInfoAsync_Being_CalledAsync()
+        {
+            // init service
+            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
+
+            await ctr.GetInfoAsync(CancellationToken.None);
+
+            Assert.NotNull(ctr.Infoes);
+        }
+
+        [Fact]
+        public void DealService_HasMethod_CreateAsync()
+        {
+            // init service
+            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
+            var type = ctr.GetType();
+
+            Assert.NotNull(type.GetMethod("CreateDealAsync"));
+        }
+        
+        
     }
 }

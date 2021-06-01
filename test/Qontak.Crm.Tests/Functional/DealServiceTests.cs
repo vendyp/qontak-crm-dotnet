@@ -1,27 +1,14 @@
 using System;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+using Moq;
 using Xunit;
 
 namespace Qontak.Crm.Tests.Functional
 {
     public class DealServiceTests
     {
-        public DealServiceTests()
-        {
-            CrmOption = new QontakCrmOptions()
-            {
-                CrmUsername = "Lorep",
-                CrmPassword = "Ipsum"
-            };
-
-            CrmClient = new QontakCrmClient(CrmOption);
-
-            Services = new DealService(CrmClient);
-        }
-
-        public QontakCrmOptions CrmOption { get; }
-        public QontakCrmClient CrmClient { get; }
-        public DealService Services { get; }
-
         [Fact]
         public void DealService_Init_ShouldThrowArgumentNullException()
         {
@@ -41,14 +28,36 @@ namespace Qontak.Crm.Tests.Functional
         [Fact]
         public void DealService_BasePath_MustNotNull()
         {
-            Assert.NotNull(Services.BasePath);
-            Assert.True(!string.IsNullOrWhiteSpace(Services.BasePath));
+            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
+
+            Assert.NotNull(ctr.BasePath);
+            Assert.True(!string.IsNullOrWhiteSpace(ctr.BasePath));
         }
 
         [Fact]
         public void DealService_BasePath_MustCorrectValue()
         {
-            Assert.Equal(expected: "deals", actual: Services.BasePath);
+            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
+
+            Assert.Equal(expected: "deals", actual: ctr.BasePath);
+        }
+
+        [Fact]
+        public async Task DealService_GetInfoAsync_ShouldCall_RequestListAsync()
+        {
+            var moq = MockCrmClient.GetMockedObjectOfCrmClient<Info>();
+
+            // init service
+            var ctr = new DealService(moq);
+
+            await ctr.GetInfoAsync(CancellationToken.None);
+
+            Mock.Get(moq).Verify(x => x.RequestListAsync<Info>(
+              HttpMethod.Get,
+              "deals/info",
+              null,
+              CancellationToken.None),
+              Times.Once);
         }
     }
 }

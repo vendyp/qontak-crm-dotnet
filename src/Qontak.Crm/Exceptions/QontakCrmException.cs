@@ -1,6 +1,6 @@
 using System;
 
-namespace Qontak.Crm.Exceptions
+namespace Qontak.Crm
 {
     public class QontakCrmException : Exception
     {

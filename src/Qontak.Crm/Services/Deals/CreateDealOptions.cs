@@ -36,6 +36,12 @@ namespace Qontak.Crm
         public DateTime? ClosedDate { get; set; }
 
         /// <summary>
+        /// Creator id
+        /// </summary>
+        /// <value></value>
+        public int? CreatorId { get; set; }
+
+        /// <summary>
         /// Source of deal
         /// </summary>
         /// <value></value>

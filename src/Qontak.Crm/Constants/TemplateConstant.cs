@@ -1,15 +1,35 @@
 namespace Qontak.Crm
 {
-    public static class TemplateConstant
+    public enum TemplateConstant
     {
-        /// <summary>
-        /// Template name
-        /// </summary>
-        public static string Name = "name";
+        [EnumValue("name")]
+        Name,
 
-        /// <summary>
-        /// Template creator id
-        /// </summary>
-        public static string Creator = "creator_id";
+        [EnumValue("currency")]
+        Currency,
+
+        [EnumValue("size")]
+        Size,
+
+        [EnumValue("closed_date")]
+        ClosedDate,
+
+        [EnumValue("creator_id")]
+        CreatorId,
+
+        [EnumValue("crm_source_id")]
+        SourceId,
+
+        [EnumValue("crm_lost_reason_id")]
+        LostReasonId,
+
+        [EnumValue("start_date")]
+        StartDate,
+
+        [EnumValue("expired_date")]
+        ExpiredDate,
+
+        [EnumValue("crm_priority_id")]
+        PriorityId,
     }
 }

@@ -1,4 +1,4 @@
-namespace Qontak.Crm.Constants
+namespace Qontak.Crm
 {
     public static class PropertyFieldTypeConstant
     {

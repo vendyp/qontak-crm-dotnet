@@ -6,17 +6,21 @@ namespace Qontak.Crm.Tests.Functional
     {
         public static CreateDealOptions Create()
         {
-            return new CreateDealOptions();
+            return new CreateDealOptions(1, 2);
         }
 
-        public static CreateDealOptions CreateDealDummy()
+        public static CreateDealOptions Create(int pipelineId, int stageId)
         {
-            var ctr = new CreateDealOptions();
+            return new CreateDealOptions(pipelineId, stageId);
+        }
+
+        public static CreateDealOptions CreateDealDummy(int pipelineId, int stageId)
+        {
+            var ctr = new CreateDealOptions(pipelineId, stageId);
 
             ctr.Name = "Deal Test";
             ctr.Currency = "IDR";
             ctr.ClosedDate = DateTime.UtcNow;
-            ctr.StageId = 1;
             ctr.StartDate = DateTime.UtcNow.AddDays(-7);
             ctr.ExpiredDate = DateTime.UtcNow.AddDays(14);
 

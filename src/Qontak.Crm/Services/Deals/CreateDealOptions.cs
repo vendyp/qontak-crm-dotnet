@@ -5,11 +5,29 @@ namespace Qontak.Crm
 {
     public class CreateDealOptions
     {
-        public CreateDealOptions()
+        private CreateDealOptions()
         {
             Currency = "IDR";
             AdditionalFields = new List<AdditionalField>();
         }
+
+        public CreateDealOptions(int pipelineId, int stageId) : this()
+        {
+            PipelineId = pipelineId;
+            StageId = stageId;
+        }
+
+        /// <summary>
+        /// Pipeline id from pipeline
+        /// </summary>
+        /// <value></value>
+        public int PipelineId { get; private set; }
+
+        /// <summary>
+        /// Selected stage from pipeline
+        /// </summary>
+        /// <value></value>
+        public int StageId { get; private set; }
 
         /// <summary>
         /// Name of deal
@@ -52,15 +70,6 @@ namespace Qontak.Crm
         /// </summary>
         /// <value></value>
         public int? LostReasonId { get; set; }
-
-        // this value will be default from CrmOptions
-        //public int PipelineId {get;set;}
-
-        /// <summary>
-        /// Selected stage from pipeline
-        /// </summary>
-        /// <value></value>
-        public int StageId { get; set; }
 
         /// <summary>
         /// Start date of deal

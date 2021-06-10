@@ -1,10 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Moq;
-using Qontak.Crm.Constants;
 using Xunit;
 
 namespace Qontak.Crm.Tests.Functional
@@ -60,7 +58,7 @@ namespace Qontak.Crm.Tests.Functional
             // init service
             var ctr = new DealService(moq);
 
-            await ctr.GetInfoAsync(CancellationToken.None);
+            await ctr.GetInfosAsync(CancellationToken.None);
 
             Mock.Get(moq).Verify(x => x.RequestListAsync<Info>(
               HttpMethod.Get,
@@ -76,7 +74,7 @@ namespace Qontak.Crm.Tests.Functional
             // init service
             var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Info>());
 
-            await ctr.GetInfoAsync(CancellationToken.None);
+            await ctr.GetInfosAsync(CancellationToken.None);
 
             Assert.NotNull(ctr.Infoes);
         }
@@ -89,86 +87,6 @@ namespace Qontak.Crm.Tests.Functional
             var type = ctr.GetType();
 
             Assert.NotNull(type.GetMethod("CreateDealAsync"));
-        }
-
-        [Fact]
-        public void DealService_ValidateRequiredOptions_ThrowArgumentNullException_When_Only_Options_IsNull()
-        {
-            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Deal>());
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                ctr.DefaultValidationRequiredOptions(null, DealInfoConstruction.GetInfoesDummy());
-            });
-        }
-
-        [Fact]
-        public void DealService_ValidateRequiredOptions_ThrowArgumentNullException_When_Only_Infoes_IsNull()
-        {
-            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Deal>());
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                ctr.DefaultValidationRequiredOptions(CreateDealOptionsConstruction.Create(), null);
-            });
-        }
-
-        [Fact]
-        public void DealService_ValidateRequiredOptions_ThrowArgumentNullException_When_Infoes_IsEmpty()
-        {
-            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Deal>());
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                ctr.DefaultValidationRequiredOptions(CreateDealOptionsConstruction.Create(), new List<Info>());
-            });
-        }
-
-        [Fact]
-        public void DealService_ValidateRequiredOptions_ThrowArgumentNullException_When_CreatorInfo_Dropdown_IsNull()
-        {
-            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Deal>());
-
-            var options = CreateDealOptionsConstruction.Create();
-            var list = new List<Info>();
-            list.Add(new Info
-            {
-                Id = 1,
-                Name = TemplateConstant.Name,
-                Dropdown = null
-            });
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                ctr.DefaultValidationRequiredOptions(options, list);
-            });
-        }
-
-        [Fact]
-        public void DealService_ValidateRequiredOptions_ThrowArgumentNullException_When_CreatorInfo_Dropdown_Value_NotFound()
-        {
-            var ctr = new DealService(MockCrmClient.GetMockedObjectOfCrmClient<Deal>());
-
-            var options = CreateDealOptionsConstruction.Create();
-            var list = new List<Info>();
-            list.Add(new Info
-            {
-                Id = 1,
-                Name = TemplateConstant.Name,
-                Dropdown = new List<Dropdown>
-                {
-                    new Dropdown
-                    {
-                        Id = 15,
-                        Name = "Lorep"
-                    }
-                }
-            });
-
-            Assert.Throws<ArgumentNullException>(() =>
-            {
-                ctr.DefaultValidationRequiredOptions(options, list);
-            });
         }
     }
 }

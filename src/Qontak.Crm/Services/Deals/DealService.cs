@@ -32,7 +32,9 @@ namespace Qontak.Crm
         {
             if (Infoes == null)
                 await GetInfosAsync(cancellationToken);
-                
+
+            CreateDealOptionsValidator validator = new CreateDealOptionsValidator(createDealOptions, Infoes);
+
             throw new NotImplementedException();
         }
 

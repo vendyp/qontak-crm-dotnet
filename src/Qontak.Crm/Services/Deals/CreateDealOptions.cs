@@ -43,6 +43,7 @@ namespace Qontak.Crm
         /// Currency of deal. Default is IDR
         /// </summary>
         /// <value></value>
+        [DropdownByName]
         [TemplateName(TemplateConstant.Currency)]
         public string Currency { get; set; }
 

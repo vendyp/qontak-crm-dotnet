@@ -14,7 +14,6 @@ namespace Qontak.Crm
 
         public QontakCrmException(string message, Exception innerException) : base(message, innerException)
         {
-            
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,13 +28,31 @@ namespace Qontak.Crm
 
         public async Task<Deal> CreateDealAsync(
             CreateDealOptions createDealOptions,
-            Dictionary<string, string> additionalFields,
             CancellationToken cancellationToken = default)
         {
             if (Infoes == null)
                 await GetInfosAsync(cancellationToken);
 
             CreateDealOptionsValidator validator = new CreateDealOptionsValidator(createDealOptions, Infoes);
+
+            if (!validator.IsValid)
+            {
+                throw new QontakCrmException(message: $"Invalid validation; {validator.GetErrorMessage()}");
+            }
+
+            if (createDealOptions.AdditionalFields.Any())
+            {
+                var additionalFieldValidator = new AdditionalFieldValidator(
+                    currentPipelineId: createDealOptions.PipelineId,
+                    currentStageId: createDealOptions.StageId,
+                    additionalFields: createDealOptions.AdditionalFields,
+                    infoes: Infoes);
+
+                if (!additionalFieldValidator.IsValid)
+                {
+                    throw new QontakCrmException(message: $"Invalid validation on additional field(s); {additionalFieldValidator.GetErrorMessage()}");
+                }
+            }
 
             throw new NotImplementedException();
         }

@@ -2,13 +2,18 @@ namespace Qontak.Crm
 {
     public class AdditionalField
     {
-        public AdditionalField(int id, object value)
+        public AdditionalField(string name, object value)
         {
-            Id = id;
-            Value = value;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                throw new System.ArgumentException($"'{nameof(name)}' cannot be null or whitespace.", nameof(name));
+            }
+
+            Name = name;
+            Value = value ?? throw new System.ArgumentNullException(nameof(value));
         }
 
-        public int Id { get; set; }
+        public string Name { get; set; }
 
         public object Value { get; set; }
     }

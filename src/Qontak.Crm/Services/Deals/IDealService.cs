@@ -15,7 +15,6 @@ namespace Qontak.Crm.Services.Deals
         /// <returns></returns>
         Task<Deal> CreateDealAsync(
             CreateDealOptions createDealOptions,
-            Dictionary<string, string> additionalFields,
             CancellationToken cancellationToken = default);
 
         /// <summary>

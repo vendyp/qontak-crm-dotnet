@@ -111,44 +111,7 @@ namespace Qontak.Crm
 
                 }
             }
-
-            // foreach (var item in _additionalFields)
-            // {
-            //     var info = _infoes.Where(x => x.Name == item.Name).FirstOrDefault();
-            //     if (info == null)
-            //         continue;
-
-            //     bool requiredInStageId = info.RequiredStageIds.Any(x => x == _currentStageId);
-            //     bool requiredInPipelineId = info.RequiredPipelineIds.Any(x => x == _currentPipelineId);
-
-            //     string errMsgTemplate = "";
-            //     if (requiredInPipelineId && requiredInStageId)
-            //         errMsgTemplate = "current stage and pipeline";
-
-            //     if (requiredInPipelineId)
-            //         errMsgTemplate = "current pipeline";
-
-            //     if (requiredInStageId)
-            //         errMsgTemplate = "current stage";
-
-            //     if (!requiredInPipelineId && !requiredInStageId)
-            //         continue;
-
-            //     #region Dropdown select
-            //     if (info.Type == PropertyFieldTypeConstant.DropdownSelect)
-            //     {
-            //         if (!(item.Value is int))
-            //             throw new ArgumentException("Property value must be int or number");
-
-            //         if (!info.Dropdown.Any(x => x.Id == (int)item.Value))
-            //         {
-            //             result = false;
-            //             ErrorMessages += $"{info.NameAlias} is required in {errMsgTemplate};";
-            //         }
-            //     }
-            //     #endregion
-            // }
-
+            
             if (!string.IsNullOrWhiteSpace(ErrorMessages))
                 ErrorMessages = ErrorMessages.Remove(ErrorMessages.Length - 1);
 

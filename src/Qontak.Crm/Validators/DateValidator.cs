@@ -1,12 +1,12 @@
-using System;
-
 namespace Qontak.Crm
 {
     public class DateValidator : IPropertyFieldValidator
     {
         public ValidationResult Validate(object value)
         {
-            throw new NotImplementedException();
+            var result = new ValidationResult();
+
+            return result;
         }
     }
 }

@@ -4,7 +4,9 @@ namespace Qontak.Crm
     {
         public ValidationResult Validate(object value)
         {
-            throw new System.NotImplementedException();
+            var result = new ValidationResult();
+
+            return result;
         }
     }
 }

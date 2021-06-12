@@ -4,7 +4,15 @@ namespace Qontak.Crm
     {
         public ValidationResult Validate(object value)
         {
-            throw new System.NotImplementedException();
+            var result = new ValidationResult();
+
+            if (!(value is string))
+            {
+                result.IsValid = false;
+                result.ErrorMessage = "Value type must be a string";
+            }
+
+            return result;
         }
     }
 }

@@ -4,7 +4,15 @@ namespace Qontak.Crm
     {
         public ValidationResult Validate(object value)
         {
-            throw new System.NotImplementedException();
+            var result = new ValidationResult();
+
+            if (!value.IsNumber())
+            {
+                result.IsValid = false;
+                result.ErrorMessage = "Value is not a number";
+            }
+
+            return result;
         }
     }
 }

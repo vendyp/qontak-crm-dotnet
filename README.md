@@ -1,12 +1,12 @@
-# Qontak.Crm
+# Qontak Crm Dotnet Library
 
 Unofficial Qontak .NET Library [Qontak CRM](https://www.qontak.com/)
 
-## Installation
+# Installation
 
 Coming soon!
 
-## Supported API Section
+# Supported API Section
 
 1. ~~Company~~
 2. ~~Contact~~
@@ -20,9 +20,9 @@ Coming soon!
 
 Note : Strikethroughed api section meaning still waiting for development
 
-## Usage
+# Usage
 
-### Basic Usage
+## Basic Usage
 
 ```cs
 // get option from Configuration or just simply create a singleton
@@ -32,9 +32,9 @@ var options = Configuration.GetSection("CrmClientOptions");
 var crmClient = new QontakCrmClient(options);
 ```
  
-### <a name="deal"></a> Deal service
+# <a name="deal"></a> Deal service
 
-Deal usage
+## Deal Usage
 
 ```cs
 // create deal service
@@ -51,27 +51,27 @@ Deal service contains following api(s)
 5. [Update deal](#deal-update)
 6. [Delete deal](#deal-delete)
 
-#### <a name="deal-create"></a> Create Deal
+## <a name="deal-create"></a> Create Deal
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-#### <a name="deal-template-info"></a> Get deal template info
+## <a name="deal-template-info"></a> Get deal template info
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
 
-#### <a name="deal-pipeline"></a> Get pipeline
+## <a name="deal-pipeline"></a> Get pipeline
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-#### <a name="deal-stage"></a> Get Stage
+## <a name="deal-stage"></a> Get Stage
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-#### <a name="deal-update"></a> Update deal
+## <a name="deal-update"></a> Update deal
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
 
-#### <a name="deal-delete"></a> Delete Deal
+## <a name="deal-delete"></a> Delete Deal
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum

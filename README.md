@@ -2,8 +2,6 @@
 
 Unofficial Qontak .NET Library [Qontak CRM](https://www.qontak.com/)
 
-Currently default version will be v3.1
-
 ## Installation
 
 Coming soon!

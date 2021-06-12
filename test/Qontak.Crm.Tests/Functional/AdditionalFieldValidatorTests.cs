@@ -76,7 +76,9 @@ namespace Qontak.Crm.Tests.Functional
         {
             var ctr = CreateDealOptionsConstruction.CreateDealDummy(PipelineId, StageId);
 
-            DataInfoTestForDeal.Add(new Info
+            var dataTest = new List<Info>();
+            dataTest.AddRange(DataInfoTestForDeal);
+            dataTest.Add(new Info
             {
                 Id = 2,
                 Name = "test_name_only",
@@ -87,7 +89,7 @@ namespace Qontak.Crm.Tests.Functional
                 RequiredStageIds = null
             });
 
-            var validator = new AdditionalFieldValidator(ctr.PipelineId, ctr.StageId, ctr.AdditionalFields, DataInfoTestForDeal);
+            var validator = new AdditionalFieldValidator(ctr.PipelineId, ctr.StageId, ctr.AdditionalFields, dataTest);
 
             Assert.Throws<QontakCrmException>(() =>
             {
@@ -100,7 +102,9 @@ namespace Qontak.Crm.Tests.Functional
         {
             var ctr = CreateDealOptionsConstruction.CreateDealDummy(PipelineId, StageId);
 
-            DataInfoTestForDeal.Add(new Info
+            var dataTest = new List<Info>();
+            dataTest.AddRange(DataInfoTestForDeal);
+            dataTest.Add(new Info
             {
                 Id = 2,
                 Name = "test_name_only",
@@ -111,7 +115,7 @@ namespace Qontak.Crm.Tests.Functional
                 RequiredStageIds = new int[] { }
             });
 
-            var validator = new AdditionalFieldValidator(ctr.PipelineId, ctr.StageId, ctr.AdditionalFields, DataInfoTestForDeal);
+            var validator = new AdditionalFieldValidator(ctr.PipelineId, ctr.StageId, ctr.AdditionalFields, dataTest);
 
             Assert.Throws<QontakCrmException>(() =>
             {
@@ -180,6 +184,22 @@ namespace Qontak.Crm.Tests.Functional
 
             Assert.False(validator.IsValid);
             Assert.NotEmpty(errMsg);
+        }
+
+        [Fact]
+        public void AdditionalFieldValidator_Deal_Should_True()
+        {
+            var ctr = CreateDealOptionsConstruction.CreateDealDummy(PipelineId, StageId);
+            ctr.AdditionalFields.Add(new AdditionalField("test_url", "https://github.com/VendyP"));
+            ctr.AdditionalFields.Add(new AdditionalField("test_category_name", "Lorep Ipsum"));
+
+            var validator = new AdditionalFieldValidator(ctr.PipelineId, ctr.StageId, ctr.AdditionalFields, DataInfoTestForDeal);
+
+            var result = validator.IsValid;
+            var errMsg = validator.GetErrorMessage();
+
+            Assert.True(result);
+            Assert.Null(errMsg);
         }
         #endregion
 

@@ -10,6 +10,7 @@ namespace Qontak.Crm
         private readonly int? _currentStageId;
         private readonly List<AdditionalField> _additionalFields;
         private readonly List<Info> _infoes;
+        private readonly PropertyFieldValidator _propertyValidator;
 
         /// <summary>
         /// 
@@ -32,6 +33,7 @@ namespace Qontak.Crm
 
             _additionalFields = additionalFields;
             _infoes = infoes;
+            _propertyValidator = PropertyFieldValidator.GetInstance();
         }
 
         /// <summary>
@@ -83,6 +85,18 @@ namespace Qontak.Crm
 
             foreach (var info in GetAdditionalInfos())
             {
+                var additionalField = _additionalFields.Where(x => x.Name == info.Name).FirstOrDefault();
+
+                if (additionalField != null)
+                {
+                    var validationResult = _propertyValidator.Validate(additionalField.Value, info.Type);
+                    if (!validationResult.IsValid)
+                    {
+                        result = false;
+                        ErrorMessages += $"{validationResult.ErrorMessage};";
+                    }
+                }
+
                 if (_currentPipelineId.HasValue && _currentStageId.HasValue)
                 {
                     bool requiredInStageId = info.RequiredStageIds.Any(x => x == _currentStageId);
@@ -100,7 +114,7 @@ namespace Qontak.Crm
                     if (requiredInStageId)
                         errMsgTemplate = "current stage";
 
-                    if (!_additionalFields.Any(x => x.Name == info.Name && x.Value != null))
+                    if (additionalField == null)
                     {
                         result = false;
                         ErrorMessages += $"Additional field \"{info.NameAlias}\" is required in {errMsgTemplate};";
@@ -111,7 +125,7 @@ namespace Qontak.Crm
 
                 }
             }
-            
+
             if (!string.IsNullOrWhiteSpace(ErrorMessages))
                 ErrorMessages = ErrorMessages.Remove(ErrorMessages.Length - 1);
 

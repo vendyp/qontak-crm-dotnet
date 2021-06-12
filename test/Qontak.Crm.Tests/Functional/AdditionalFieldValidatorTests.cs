@@ -165,10 +165,10 @@ namespace Qontak.Crm.Tests.Functional
         /// This should be false, because given create deal options has required additional info
         /// but the value is not match with the info`s type
         /// 
-        /// in this case, name test_url is a URL type, but the input is string
+        /// in this case, name test_url is a URL type, but the input is plain string
         /// </summary>
-        [Fact(Skip = "Waiting until PropertyFieldValidator is done")]
-        public void AdditionalFieldValidator_Deal_Should_False__And_ErrMsg_NotEmpty_False_With_DataTest_Case_Two()
+        [Fact]
+        public void AdditionalFieldValidator_Deal_Should_False_And_ErrMsg_NotEmpty_False_With_DataTest_Case_Two()
         {
             var ctr = CreateDealOptionsConstruction.CreateDealDummy(PipelineId, StageId);
             ctr.AdditionalFields.Add(new AdditionalField("test_url", "stackoverflow dot com"));
